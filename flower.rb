@@ -14,7 +14,12 @@ module FlowerStore
     end
 
     def sell(num)
-
+      if num > @quantity_available
+        raise ArgumentError.new("Maximum quantity in stock is only #{@quantity_available}.")
+      end
+      @quantity_available -= num
+      @total_sold += num
+      @bundles -= (24/num)
     end
   end
 end
